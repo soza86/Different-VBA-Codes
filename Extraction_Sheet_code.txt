@@ -1,0 +1,23 @@
+'Code for extracting Test Sheets
+    Dim directory As String, fileName As String, sheet As Worksheet, total As Integer
+
+Application.EnableEvents = False
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+
+directory = ActiveSheet.Range("G18").Value
+fileName = Dir(directory & "*.xl??")
+
+    Do WhilefileName<> ""
+Workbooks.Open (directory &fileName)
+Sheets("Test").Copy before:=Workbooks("FCET.xlsm").Sheets("HomePage")
+Sheets(Sheets.Count - 1).Name = Replace(fileName, ".xlsm", "")
+Sheets(Sheets.Count - 1).Tab.ColorIndex = xlNone
+Workbooks(fileName).Close
+fileName = Dir()
+    Loop
+
+Sheets("HomePage").Select
+Application.ScreenUpdating = True
+Application.DisplayAlerts = True
+Application.EnableEvents = True

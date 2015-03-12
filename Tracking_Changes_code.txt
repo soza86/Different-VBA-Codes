@@ -1,0 +1,29 @@
+`Code for tracking changes in the Overview sheet
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+`This condition checks if the changes are made to the “Changes” sheet. If true, then this procedure ends.
+If ActiveSheet.Name = "Changes" Then Exit Sub
+
+Application.EnableEvents = False
+
+UserName = Environ("USERNAME")
+NewVal = Target.Value
+Application.Undo
+oldVal = Target.Value
+
+`Finds the last row of the spreadsheet “Changes”
+lr = Sheets("Changes").Range("A" &Rows.Count).End(xlUp).Row + 1
+
+`The following block of statements stores the changes the last available row of the sheet “Changes” 
+Sheets("Changes").Range("A" &lr) = Now
+Sheets("Changes").Range("B" &lr) = UserName
+Sheets("Changes").Range("C" &lr) = ActiveSheet.Name
+Sheets("Changes").Range("D" &lr) = Target.Address
+Sheets("Changes").Range("E" &lr) = oldVal
+Sheets("Changes").Range("F" &lr) = NewVal
+
+
+Target = NewVal
+Application.EnableEvents = True
+
+End Sub

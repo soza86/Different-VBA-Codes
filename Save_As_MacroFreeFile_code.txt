@@ -1,0 +1,7 @@
+'Code for saving the file as macro-free Excel file
+fName = Application.GetSaveAsFilename(FileFilter:="Macro-Free Excel File (*.xlsx), *.xlsx")
+    If fName = False Then
+        Exit Sub
+    Else
+ThisWorkbook.SaveAsfileName:=fName, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+    End If

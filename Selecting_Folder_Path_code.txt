@@ -1,0 +1,32 @@
+'Code for selecting the folder where the files to be extracted are located
+    Dim fldr As FileDialog, strPath As String, directory As String, sItem As String
+
+Application.EnableEvents = False
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+
+    Set fldr = Application.FileDialog(msoFileDialogFolderPicker)
+    With fldr
+        .Title = "Select a Folder"
+        .AllowMultiSelect = False
+        .InitialFileName = strPath
+    If .Show <> -1 Then GoToNextCode
+directory = .SelectedItems(1) & "\"
+    End With
+NextCode:
+GetFolder = sItem
+    Set fldr = Nothing
+
+ActiveSheet.Range("G18").Value = directory
+
+Sheets("HomePage").Select
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+Application.DisplayAlerts = True
+
+================================================================================================
+
+'Code for deleting/clearing folder path
+ActiveSheet.Range("G18").Select
+Selection.ClearContents
+ActiveSheet.Range("C19").Select

@@ -1,0 +1,32 @@
+'Code for deleting all sheets
+    For Each wsIn Sheets
+Application.DisplayAlerts = False
+        If ws.Name<> "HomePage" Then ws.Delete
+    Next
+
+Application.DisplayAlerts = True
+
+
+=====================================================================
+
+'Code for deleting specific sheet
+Dim sht As Variant
+    Dim shstate As Boolean
+sht = InputBox("Enter the sheet's name you want to delete:")
+
+    For Each wsIn Sheets
+Application.DisplayAlerts = False
+
+        If ws.Name = sht Then
+ws.Delete
+shstate = True
+        End If
+    Next
+
+    If shstate = True Then
+MsgBox "Sheet deleted"
+    Else
+MsgBox "Sheet not found"
+    End If
+
+Application.DisplayAlerts = True
