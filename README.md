@@ -1,4 +1,5 @@
 # Different-VBA-Codes
+#This file contains explanatios about different codes implemented in VBA
 
 This code tracks any changes made to the available spreadsheets of a workbook (besides “Changes” sheet, where all the changes are recorded).
 
